@@ -168,16 +168,25 @@ This subtask involves creating and configuring a Python-based monitoring script 
 ## Monitoring Details:
 
 Monitor Name: Latency Checker
+
 Type: Python Script
+
 Execution Frequency: 60 seconds
+
 Execution Timeout: 30 seconds
+
 REDIS_HOST -  “54.208.56.134"
+
 REDIS_PORT - “6379"
+
 REDIS_PASSWORD  - “12345”
+
 LATENCY_THRESHOLD_MS “10" milliseconds
 
 Exit Code Logic:
+
 0 → Latency is below the defined threshold and Redis responded correctly.
+
 1 → Latency exceeded the threshold or Redis did not respond within timeout.
 
 Current Status:
@@ -192,15 +201,23 @@ This subtask involves creating and configuring a Python-based monitoring script 
 ##Monitoring Details:
 
 Monitor Name: Ping Check
+
 Type: Python Script
+
 Execution Frequency: 60 seconds 
+
 Execution Timeout: 50 seconds
+
 REDIS_HOST -  “3.85.160.232"
+
 REDIS_PORT - “6379"
+
 REDIS_PASSWORD  - “12345”
 
 Exit Code Logic:
+
 0 → Redis server responded with PING, indicating it's reachable and functioning.
+
 1 → Redis server did not respond or returned an unexpected response, indicating potential connectivity issues.
 
 Current Status:
