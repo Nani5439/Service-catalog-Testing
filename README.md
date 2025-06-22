@@ -37,7 +37,10 @@ Once your EC2 instance is running, connect to it from your local machine using S
 ![elastic search instance connected](https://github.com/user-attachments/assets/daea0865-fe67-4fa5-a701-98a8f331e042)
 ## Step 3: Install Docker
 ### Commands:
-### 1.sudo apt updateCommands:
+### 1.sudo apt update:
+```
+apt update -y
+```
 Updates the local package index so Ubuntu knows the latest available versions of software. It’s always a good practice to run this before installing any new software.
 
 ### 2.sudo apt install docker.io -y
