@@ -41,6 +41,77 @@ Installs Docker from Ubuntu’s official repositories. The -y flag automatically
 ```
 sudo apt install redis-server -y
 ```
+## Step 2: Configure Redis to allow public access and authentication
+Open the Redis configuration file:
+```
+sudo nano /etc/redis/redis.conf
+```
+Make the following changes:
+
+Bind to all interfaces:
+Replace:
+bind 127.0.0.1 ::1
+With:
+bind 0.0.0.0
+
+2.Disable protected mode:
+Change:
+protected-mode yes
+To:
+protected-mode no
+
+3.Set a password:
+Find and uncomment this line:
+requirepass foobared
+Replace with:
+requirepass 12345
+
+## Step 3: Restart Redis to apply changes
+```
+sudo systemctl restart redis-server
+```
+
+## Step 4: Set maxmemory and eviction policy (required for monitoring)
+Run these commands from your client machine or same server:
+Set memory limit (256 MB):
+```
+redis-cli -h <your-public-ip> -a 12345 CONFIG SET maxmemory 268435456
+```
+Set eviction policy:
+```
+redis-cli -h <your-public-ip> -a 12345 CONFIG SET maxmemory-policy allkeys-lru
+```
+
+## Step 5: Verify configuration
+```
+redis-cli -h 54.208.56.134 -a 12345 INFO memory | grep -E 'maxmemory|maxmemory_policy'
+```
+
+Step 6: (Optional) Make memory config persistent
+Re-open the redis.conf:
+Find and set the following parameters:
+```
+maxmemory 516MB
+maxmemory-policy allkeys-lru
+```
+Then save and restart:
+```
+sudo systemctl restart redis-server
+```
+
+## Step 7: Test Redis
+Basic ping test:
+```
+redis-cli -h 54.208.56.134 -a 12345 ping
+```
+Expected response:
+PONG
+
+
+
+
+
+
 
 
 
