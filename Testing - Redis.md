@@ -1,10 +1,7 @@
 ## TESTING - REDIS SERVICE CATALOG
 ### What is Redis?
 Redis (short for Remote Dictionary Server) is an open-source, in-memory data store that is primarily used as a:
-
 Database
-
 Cache
-
 Message broker
-jj
+
