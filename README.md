@@ -84,7 +84,7 @@ Tracks the rate at which documents are indexed into Elasticsearch. A sudden drop
 
 Script Name: elasticsearch_indexing_rate.py
 
-Elasticsearch URL: http://34.226.143.141:9200/_stats/indexing
+Elasticsearch URL: http://34.226.143.141:9200
 
 Username: elastic
 
