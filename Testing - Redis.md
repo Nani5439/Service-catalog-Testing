@@ -226,7 +226,7 @@ Current Status:
 ![redis ping check](https://github.com/user-attachments/assets/70afdbe7-eb15-4115-ba76-8b27e43defd5)
 
 
-##Conclusion
+## Conclusion
  
 In this setup, Redis was successfully deployed on an AWS EC2 Ubuntu instance using Docker. With the help of monitoring tools—Memory Usage Monitor, Latency Checker, and Ping Check—the Redis server’s health, responsiveness, and resource usage can be actively tracked. This ensures that Redis is not only running but also performing efficiently. Proper deployment and monitoring help in early detection of issues, maintain system stability, and support high-performance application environments that rely on fast, in-memory data storage.
 
