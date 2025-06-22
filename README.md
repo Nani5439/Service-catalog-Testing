@@ -35,44 +35,165 @@ Security Group: Allow 9200 and SSH(22).
 ### Description:
 Once your EC2 instance is running, connect to it from your local machine using SSH and the downloaded key.
 ![elastic search instance connected](https://github.com/user-attachments/assets/daea0865-fe67-4fa5-a701-98a8f331e042)
+
 ## Step 3: Install Docker
-### Commands:
-### 1.sudo apt update:
+Update Package List : Updates the package index to the latest versions available.
 ```
-1.apt update -y
+sudo apt update
 ```
-Updates the local package index so Ubuntu knows the latest available versions of software. It’s always a good practice to run this before installing any new software.
+Installs Docker from Ubuntu's official package repositories. The -y flag auto-confirms prompts.
+```
+sudo apt install docker.io -y
+```
+Ensures Docker is running and will start on boot.
+```
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+## step 4:Pull the Official Elasticsearch Docker Image
+Downloads the latest stable version (replace 8.13.4 with the version you want).
+```
+docker pull docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+```
+## step 5: Create docker network
+Docker network is used to communicate with containers.
+```
+docker network create elastic
+```
+## step 6: Run Elasticsearch Container
+```
+docker run --name es01 --net elastic -p 9200:9200 -it docker pull docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+```
+## step 7: login password for Elasticsearch
+![ES password](https://github.com/user-attachments/assets/b5c650cf-19a4-477e-b40b-0b4a8ba2fb0c)
 
-### 2.sudo apt install docker.io -y
-Installs Docker from Ubuntu’s official repositories. The -y flag automatically confirms “yes” to all prompts during installation.
+## step 8: Login to Elasticsearch
+When you run Elasticsearch Docker container, security is enabled by default. The first-time password for the built-in elastic user is generated automatically.
 
-### Verify Docker Installation:
-### 3.docker --version
-Confirms that Docker is successfully installed and shows the version number.
-![ES docker version](https://github.com/user-attachments/assets/912cc6c5-66e9-44bd-bbb9-36858d50e496)
+![ES login page](https://github.com/user-attachments/assets/529bdef8-6568-4fc8-89b5-72761f11eb27)
 
-## Step 4: Create a Docker Network 
-A Docker network is a virtual network that allows containers to communicate with each other and, optionally, with the outside world.
-### 4.docker network create elastic
-You can verify the network was created using:
-### 5.docker network ls
-## Step 5: Run Elasticsearch in Docker
-### 6.docker run --name es01 --net elastic -p 9200:9200 -it docker.elastic.co/elasticsearch/elasticsearch:8.13.0
-docker run : Starts a new Docker container.
+## Step 9: Verify Access to Elasticsearch
+Expected output:
+![ES dashboard](https://github.com/user-attachments/assets/cc592e37-9a80-4ee7-81d5-91666893f809)
 
---name es01 : Assigns the name es01 to the container for easy management and reference.
+## Monitoring Elasticsearch
+Monitoring ensures your Elasticsearch service is available, performant, and healthy. Below are 4 key monitoring tools you can implement using Python scripts.
 
---net elastic : Connects the container to a custom Docker network named elastic, allowing communication with other containers in the same network.
+## 1.Indexing Rate Monitor
+Tracks the rate at which documents are indexed into Elasticsearch. A sudden drop in indexing rate may indicate ingestion pipeline issues or overloaded nodes.
 
--p 9200:9200 : Maps port 9200 on the host to port 9200 inside the container. This is Elasticsearch’s default HTTP port used for queries.
+Script Name: elasticsearch_indexing_rate.py
 
--it : Runs the container in interactive mode with a terminal. Useful for viewing logs or interacting with the container.
+Elasticsearch URL: http://34.226.143.141:9200/_stats/indexing
 
-docker.elastic.co/elasticsearch/elasticsearch:8.13.0 : Specifies the official Elasticsearch Docker image and version 8.13.0 from Elastic's Docker registry.
+Username: elastic
 
-## Verify Container is Running:
-### 7.sudo docker ps
-You should see the elasticsearch container listed with ports 9200.
+Password: mCCEycn1Xe+n5FN5TW1R
+
+Frequency: Every 900 seconds (15 minutes)
+
+Timeout: 120 seconds
+
+Threshold: Monitoring-only (alerts if indexing stalls or remains unchanged over time)
+
+Exit Codes:
+
+0 – Success (indexing active)
+
+1 – Failure (indexing not increasing, or request error)
+
+Current Status:
+✅ Running successfully. Indexing activity is healthy, and document counts are progressing as expected over each check interval.
+
+![ES index rate](https://github.com/user-attachments/assets/57c187e4-7353-4012-b2d9-0cf4f9862697)
+
+## 2. Cluster Health Monitor
+Checks the overall health of the Elasticsearch cluster (green, yellow, or red). A yellow or red status could point to unassigned shards, node failures, or replication issues.
+
+Script Name: elasticsearch_cluster_health.py
+
+Elasticsearch URL: http://34.226.143.141:9200
+
+Frequency: 900 seconds
+
+Timeout: 120 seconds
+
+Username: elastic
+
+Password: mCCEycn1Xe+n5FN5TW1R
+
+Exit Codes:
+
+0 – Success (cluster is green)
+
+1 – Failure (cluster is yellow, red, or inaccessible)
+
+Current Status:
+✅ Running successfully. Cluster is in green state with all shards active and healthy.
+
+![ES cluster](https://github.com/user-attachments/assets/ba466590-bb63-4aa6-94f2-895b6202acd6)
+
+## 3.Query Latency Monitor
+Measures the time taken for search queries to execute. Elevated query latency may suggest inefficient queries, overloaded nodes, or data distribution imbalance.
+
+Script Name: elasticsearch_latency_monitor.py
+
+Elasticsearch URL: http://34.226.143.141:9200
+
+Frequency: 900 seconds
+
+Timeout: 120 seconds
+
+Username: elastic
+
+Password: mCCEycn1Xe+n5FN5TW1R
+
+Exit Codes:
+
+0 – Success (response within latency threshold)
+
+1 – Failure (latency too high or no response)
+
+Current Status:
+✅ Running successfully. Latency remains within defined threshold limits.
+
+![ES query](https://github.com/user-attachments/assets/b8878f2e-ab44-4369-8c3d-e8565bc778d1)
+
+## 4.Connectivity Check
+Confirms that the Elasticsearch service is reachable and responsive to HTTP requests. This check ensures the API is accessible and the service is not down or unresponsive.
+
+Script Name: elasticsearch_connectivity_check.py
+
+Elasticsearch URL: http://34.226.143.141:9200
+
+Frequency: 900 seconds
+
+Timeout: 120 seconds
+
+Username: elastic
+
+Password: mCCEycn1Xe+n5FN5TW1R
+
+Exit Codes:
+
+0 – Success (reachable)
+
+1 – Failure (not reachable or error)
+
+Current Status:
+✅ Running successfully. Elasticsearch is reachable and responding with HTTP 200.
+
+![ES connectivity](https://github.com/user-attachments/assets/66df7dd8-0ac2-4c1a-aca0-00f3f70b7c7a)
+
+## conclusion
+lasticsearch at  is now fully monitored using four automated scripts checking connectivity, latency, cluster health, and indexing rate. Each runs every 15 minutes with a 120-second timeout using secure credentials. This setup ensures early issue detection, maintains performance, and supports a reliable production environment.
+
+
+
+
+
+
+
 
 
 
