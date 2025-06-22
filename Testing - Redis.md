@@ -119,7 +119,88 @@ PONG
 ![redis pong](https://github.com/user-attachments/assets/d377f2b6-b1bf-4ca7-8218-26490c9a3338)
 
 
- ## Conclusion
+## Redis Service Catalog: Monitoring Overview
+The Redis service catalog features four essential monitoring tools aimed at maintaining the health, responsiveness, and efficiency of the Redis server. Each tool runs Python scripts at scheduled intervals to automatically assess critical operational metrics and behaviors.
+
+These continuous checks allow:
+Early issue detection
+Fast troubleshooting
+Reduced downtime
+Improved service reliability
+
+
+## Monitoring Implemented
+
+## 1.Memory Usage Monitor
+
+This subtask involves creating and configuring a Python-based monitoring script that connects to the Redis server and checks its memory usage to ensure it remains within acceptable limits.
+
+## Monitoring Details:
+Monitor Name: Memory Usage Monitor
+Type: Python Script
+Execution Frequency: 60 seconds
+Execution Timeout: 40 seconds
+REDIS_HOST -  “54.208.56.134"
+REDIS_PORT - “6379"
+REDIS_PASSWORD  - “12345”
+
+Exit Code Logic:
+0 → Memory usage is within defined threshold.
+1 → Memory usage has exceeded the set threshold or Redis is unreachable.
+
+Current Status:
+🟢 Running successfully with no detected issues. Redis memory usage is within the expected range.
+
+![redis memory usage monitor](https://github.com/user-attachments/assets/83955c84-90eb-476c-a368-b10ffbf175ba)
+
+## Latency Checker Monitor
+This subtask involves creating and configuring a Python-based monitoring script that measures the average latency of Redis server responses by executing multiple PING commands and comparing the result against a defined threshold.
+
+## Monitoring Details:
+
+Monitor Name: Latency Checker
+Type: Python Script
+Execution Frequency: 60 seconds
+Execution Timeout: 30 seconds
+REDIS_HOST -  “54.208.56.134"
+REDIS_PORT - “6379"
+REDIS_PASSWORD  - “12345”
+LATENCY_THRESHOLD_MS “10" milliseconds
+
+Exit Code Logic:
+0 → Latency is below the defined threshold and Redis responded correctly.
+1 → Latency exceeded the threshold or Redis did not respond within timeout.
+
+Current Status:
+🟢 Running successfully with no detected issues. Redis is responding within the expected latency limits.
+
+![redis latency check](https://github.com/user-attachments/assets/6830e999-5922-47a6-929a-51b405681da0)
+
+## Ping check Monitor
+
+This subtask involves creating and configuring a Python-based monitoring script that verifies basic connectivity and responsiveness of the Redis server by sending a single PING command and expecting a valid response.
+
+##Monitoring Details:
+
+Monitor Name: Ping Check
+Type: Python Script
+Execution Frequency: 60 seconds 
+Execution Timeout: 50 seconds
+REDIS_HOST -  “3.85.160.232"
+REDIS_PORT - “6379"
+REDIS_PASSWORD  - “12345”
+
+Exit Code Logic:
+0 → Redis server responded with PING, indicating it's reachable and functioning.
+1 → Redis server did not respond or returned an unexpected response, indicating potential connectivity issues.
+
+Current Status:
+🟢 Running successfully with no detected issues. Redis is reachable and responding to ping checks.
+
+![redis ping check](https://github.com/user-attachments/assets/70afdbe7-eb15-4115-ba76-8b27e43defd5)
+
+
+##Conclusion
  
 In this setup, Redis was successfully deployed on an AWS EC2 Ubuntu instance using Docker. With the help of monitoring tools—Memory Usage Monitor, Latency Checker, and Ping Check—the Redis server’s health, responsiveness, and resource usage can be actively tracked. This ensures that Redis is not only running but also performing efficiently. Proper deployment and monitoring help in early detection of issues, maintain system stability, and support high-performance application environments that rely on fast, in-memory data storage.
 
