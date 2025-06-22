@@ -39,7 +39,7 @@ Once your EC2 instance is running, connect to it from your local machine using S
 ### Commands:
 ### 1.sudo apt update:
 ```
-apt update -y
+1.apt update -y
 ```
 Updates the local package index so Ubuntu knows the latest available versions of software. It’s always a good practice to run this before installing any new software.
 
