@@ -136,16 +136,25 @@ Improved service reliability
 This subtask involves creating and configuring a Python-based monitoring script that connects to the Redis server and checks its memory usage to ensure it remains within acceptable limits.
 
 ## Monitoring Details:
+
 Monitor Name: Memory Usage Monitor
+
 Type: Python Script
+
 Execution Frequency: 60 seconds
+
 Execution Timeout: 40 seconds
+
 REDIS_HOST -  “54.208.56.134"
+
 REDIS_PORT - “6379"
+
 REDIS_PASSWORD  - “12345”
 
 Exit Code Logic:
+
 0 → Memory usage is within defined threshold.
+
 1 → Memory usage has exceeded the set threshold or Redis is unreachable.
 
 Current Status:
