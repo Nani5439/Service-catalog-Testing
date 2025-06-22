@@ -37,6 +37,11 @@ Updates the local package index so Ubuntu knows the latest available versions of
 ```
  sudo apt update
 ```
+Installs Docker from Ubuntu’s official repositories. The -y flag automatically confirms “yes” to all prompts during installation
+```
+sudo apt install redis-server -y
+```
+
 
 
 
