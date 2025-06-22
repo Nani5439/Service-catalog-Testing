@@ -54,17 +54,26 @@ bind 127.0.0.1 ::1
 With:
 bind 0.0.0.0
 
+![ redis bind](https://github.com/user-attachments/assets/2d0a4192-46e0-4475-8b57-b688ac2e98e7)
+
+
 2.Disable protected mode:
 Change:
 protected-mode yes
 To:
 protected-mode no
 
+![redis protected mode](https://github.com/user-attachments/assets/0b75bfa6-09b7-4db5-85c5-309e441f7965)
+
+
 3.Set a password:
 Find and uncomment this line:
 requirepass foobared
 Replace with:
 requirepass 12345
+
+![ redis requirepass](https://github.com/user-attachments/assets/f0b6c0bc-170a-4a7e-bda7-2fbb8434ffb7)
+
 
 ## Step 3: Restart Redis to apply changes
 ```
@@ -106,6 +115,13 @@ redis-cli -h 54.208.56.134 -a 12345 ping
 ```
 Expected response:
 PONG
+
+![redis pong](https://github.com/user-attachments/assets/d377f2b6-b1bf-4ca7-8218-26490c9a3338)
+
+
+ ## Conclusion
+ 
+In this setup, Redis was successfully deployed on an AWS EC2 Ubuntu instance using Docker. With the help of monitoring tools—Memory Usage Monitor, Latency Checker, and Ping Check—the Redis server’s health, responsiveness, and resource usage can be actively tracked. This ensures that Redis is not only running but also performing efficiently. Proper deployment and monitoring help in early detection of issues, maintain system stability, and support high-performance application environments that rely on fast, in-memory data storage.
 
 
 
