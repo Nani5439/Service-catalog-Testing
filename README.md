@@ -63,7 +63,7 @@ docker network create elastic
 ```
 ## step 6: Run Elasticsearch Container
 ```
-docker run --name es01 --net elastic -p 9200:9200 -it docker pull docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+docker run --name es01 --net elastic -p 9200:9200 -it  docker.elastic.co/elasticsearch/elasticsearch:8.13.4
 ```
 ## step 7: login password for Elasticsearch
 ![ES password](https://github.com/user-attachments/assets/b5c650cf-19a4-477e-b40b-0b4a8ba2fb0c)
