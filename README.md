@@ -18,6 +18,7 @@ Monitoring dashboard – Tools like Grafana or custom scripts to visualize and m
 ## Step 1: Launch EC2 Instance
 ### Description :
 Create a new EC2 instance using the AWS Console with the following settings:
+
 AMI: Ubuntu Server (20.04 or 22.04)
 
 
