@@ -21,7 +21,7 @@ Create a new EC2 instance using the AWS Console with the following settings:
 AMI: Ubuntu Server (20.04 or 22.04)
 
 
-Instance Type: t2.micro (for testing)
+Instance Type: t3.medium (for testing)
 
 
 Key Pair: created a elasticsearch.pem key pair
