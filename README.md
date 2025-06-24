@@ -187,7 +187,7 @@ Current Status:
 ![ES connectivity](https://github.com/user-attachments/assets/66df7dd8-0ac2-4c1a-aca0-00f3f70b7c7a)
 
 ## conclusion
-lasticsearch at  is now fully monitored using four automated scripts checking connectivity, latency, cluster health, and indexing rate. Each runs every 15 minutes with a 120-second timeout using secure credentials. This setup ensures early issue detection, maintains performance, and supports a reliable production environment.
+Elasticsearch at  is now fully monitored using four automated scripts checking connectivity, latency, cluster health, and indexing rate. Each runs every 15 minutes with a 120-second timeout using secure credentials. This setup ensures early issue detection, maintains performance, and supports a reliable production environment.
 
 
 
