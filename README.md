@@ -109,7 +109,7 @@ Current Status:
 ![ES index rate](https://github.com/user-attachments/assets/57c187e4-7353-4012-b2d9-0cf4f9862697)
 
 ## 2. Cluster Health Monitor
-Checks the overall health of the Elasticsearch cluster (green, yellow, or red). A yellow or red status could point to unassigned shards, node failures, or replication issues.
+Checks the overall health of the Elasticsearch cluster.
 
 Script Name: elasticsearch_cluster_health.py
 
