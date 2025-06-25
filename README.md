@@ -81,7 +81,7 @@ Expected output:
 Monitoring ensures your Elasticsearch service is available, performant, and healthy. Below are 4 key monitoring tools you can implement using Python scripts.
 
 ## 1.Indexing Rate Monitor
-Tracks the rate at which documents are indexed into Elasticsearch. A sudden drop in indexing rate may indicate ingestion pipeline issues or overloaded nodes.
+Tracks the rate at which documents are indexed into Elasticsearch. 
 
 Script Name: elasticsearch_indexing_rate.py
 
