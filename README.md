@@ -1,6 +1,10 @@
 # TESTING - ELASTICSEARCH SERVICE CATALOG
 ## What is Elasticsearch?
 Elasticsearch is an open-source, distributed search and analytics engine built on top of Apache Lucene. It's designed for fast, scalable searching of large volumes of data.
+
+![ES invereted ](https://github.com/user-attachments/assets/2bfc1d86-34d2-4755-a4b3-2c2b9d8e9116)
+
+
 ## Objective
 The objective is to deploy Elasticsearch in a Docker container on an AWS EC2 Ubuntu instance and monitor its performance using four tools: Connectivity Check, Query Latency Monitor, Cluster Health Monitor, and Indexing Rate Monitor. This helps ensure the service is running smoothly and issues are detected early.
 ##  Prerequisites
